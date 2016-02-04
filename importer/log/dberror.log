@@ -1,0 +1,2 @@
+Date: Sep 2 2015 - 4:42:42 ---- Error: SQLSTATE[28000] [1045] Access denied for user 'ctaylor_2011'@'localhost' (using password: YES)
+Date: Sep 2 2015 - 4:43:58 ---- Error: SQLSTATE[28000] [1045] Access denied for user 'dev_ukdoab_2'@'localhost' (using password: YES)
