@@ -1,0 +1,24 @@
+<?php
+$categories = $this->getStoreCategories(true, false, true);
+$categoryHelper = $this->getCategoryHelper();
+?>
+<div class="ones-column">
+    <div class="sitempan">
+        <h2 class="smh2"><?php echo __('Category Pages'); ?></h2>
+        <ul>
+            <?php
+            foreach ($categories as $category):
+                if (!$category->getIsActive()) {
+                    continue;
+                }
+                ?>
+                <li>
+                    <a href="<?php echo $categoryHelper->getCategoryUrl($category) ?>"><?php echo $category->getName() ?></a>
+                </li>
+                <?php
+                $this->getChildCategories($category);
+            endforeach;
+            ?>
+        </ul>
+    </div>
+</div>

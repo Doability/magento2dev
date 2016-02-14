@@ -1,0 +1,30 @@
+<div class="ones-column">
+    <div class="sitempan">
+        <?php //if (Mage::helper('dynamicsitemap')->showCMS()): ?>
+        <h2 class="smh2"><?php echo __('Our Main Site Pages'); ?></h2>
+        <ul class="siteul">
+            <?php //if (Mage::helper('dynamicsitemap')->showCMS()): ?>
+            <?php echo $block->getCreareCMSPages(); // prints out our cms page ?>
+            <?php //endif; ?>			
+        </ul>
+        <?php //endif; ?>
+        <?php //if (Mage::helper('dynamicsitemap')->showAccount() || Mage::helper('dynamicsitemap')->showContact()): ?>
+        <ul class="siteul">
+            <?php //if (Mage::helper('dynamicsitemap')->showContact()): ?>
+            <li><a href="<?php echo $block->getUrl('contacts'); ?>" title="Contact"><?php echo __('Contact'); ?></a></li>
+            <?php //endif; ?>
+            <?php //if (Mage::helper('dynamicsitemap')->showAccount()): ?>
+            <?php //if ($this->helper('customer')->isLoggedIn()): ?>
+                <li><a href="<?php echo $block->getUrl('customer/account/index') ?>" title="<?php echo __('Account') ?>"><?php echo __('Account'); ?></a></li>
+                <li><a href="<?php echo $block->getUrl('customer/account/logout') ?>" title="<?php echo __('Log Out'); ?>"><?php echo __('Log Out'); ?></a></li>
+            <?php //else:
+                ?>
+                <li><a href="<?php echo $block->getUrl('customer/account/') ?>" title="<?php echo __('Register/Log In'); ?>"><?php echo __('Register/Log In'); ?> </a></li>
+            <?php //endif; ?>
+
+            <li><a href="<?php echo $block->getUrl('catalogsearch/advanced'); ?>" title="<?php echo __('Advanced Search'); ?>"><?php echo __('Advanced Search'); ?></a></li>
+            <?php //endif;  ?>
+        </ul>
+        <?php //endif;  ?>
+    </div>   
+</div>

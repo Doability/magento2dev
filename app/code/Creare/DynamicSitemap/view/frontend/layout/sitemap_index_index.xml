@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Sitemap</title>
+        <css src="Creare_DynamicSitemap::css/dynamicsitemap.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Creare\DynamicSitemap\Block\Dynamicsitemap" name="creare_dynamicsitemap" template="Creare_DynamicSitemap::creare/dynamicsitemap/sitemap.phtml">
+            </block>
+              <block class="Creare\DynamicSitemap\Block\CategorisCollection" name="categoriecollection" template="Creare_DynamicSitemap::creare/dynamicsitemap/categories_sitemap.phtml"/>
+
+        </referenceContainer>
+    </body>
+</page>   
