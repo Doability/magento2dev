@@ -7,4 +7,4 @@
 <theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
     <title>DoAbility</title>
     <parent>Magento/luma</parent>
-</theme>
+</theme> 

@@ -7,4 +7,4 @@
     \Magento\Framework\Component\ComponentRegistrar::THEME,
     'frontend/Clive/doability',
     __DIR__
-);
+); 
