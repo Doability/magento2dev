@@ -1,0 +1,20 @@
+<?php $_order = $block->getOrder() ?>
+<section class="admin__page-section order-vat-exempt">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Vat Exempt Details') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-vat-exempt">
+            <div class="admin__page-section-item-title">
+                <?php
+                $_string = 'I,';
+                $_string .= ($_order->getVatpername() != '' ? '<strong>&nbsp'.$_order->getVatpername().'&nbsp'.'</strong>' : '&nbsp');
+                $_string .= 'declare that I have a disabling condition';
+                $_string .= ($_order->getVatcomment() != '' ? ' by reason of <strong>'.$_order->getVatcomment().'&nbsp</strong>' : ' by some reason ');
+                $_string .= 'and receiving product which are being supplied to me for domestic or my personal use and I claim relief from value added tax.';
+                ?>
+                <p><?php  echo __($_string) ?></p>
+            </div>
+        </div>
+    </div>
+</section>

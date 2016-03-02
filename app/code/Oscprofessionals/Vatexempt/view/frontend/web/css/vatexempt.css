@@ -1,0 +1,26 @@
+
+#vatexempt .step-title {
+	margin: 0 0 15px;
+}
+.methods-vatexempt .actions-toolbar{
+	float: right;	
+}
+.methods-vatexempt .next-step .actions-toolbar{
+	margin-top: 25px;
+}
+.methods-vatexempt .actions-toolbar .action.primary {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+    padding: 14px 17px;
+}
+#vatexempt-formes .vatexempt-option-content {
+	position: relative;
+}
+#vatexempt-formes .vatexempt-option-content fieldset {
+    border: 2px solid #c2c2c2;
+    padding: 30px;
+}
+#vatexempt-formes .vatexempt-option-content.selected-item fieldset {
+	border-color: #ff5501;
+}
+#vatexempt-formes .vatexempt-option-content.selected-item fieldset:after{background: #ff5501;color: #fff;content: '\e610';font-family: 'luma-icons';height: 27px;width: 29px;font-size: 19px;line-height: 21px;padding-top: 2px;position: absolute;right: 2px;text-align: center;top: 0}

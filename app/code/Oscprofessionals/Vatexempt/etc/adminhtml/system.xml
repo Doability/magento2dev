@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+* @author      Oscprofessionals Team (support@oscprofessionals.com)
+* @copyright   Copyright (c) 2015 Oscprofessionals (http://www.oscprofessionals.com)
+* @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*
+* @category    Oscprofessionals
+* @package     Oscprofessionals_Vatexempt
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="oscprofessionals" translate="label" sortOrder="200">
+            <label>Oscprofessionals</label>
+        </tab>
+        <section id="oscp" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Vat Exempt</label>
+            <tab>oscprofessionals</tab>
+            <resource>Oscprofessionals_Vatexempt::configuration</resource>
+            <group id="vatexempt" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vat Exempt</label>
+                <field id="is_enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Vat Exempt</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <!-- <group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vat Exempt Options</label>
+                <field id="is_vat_exempt_product_base" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Base</label>
+                    <source_model>Oscprofessionals\Vatexempt\Model\Config\Source\Vatexemptbase</source_model>
+                </field>
+                <field id="assign_website" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Assign Website</label>
+                    <source_model>Oscprofessionals\Vatexempt\Model\Config\Source\Assignwebsite</source_model>
+                </field>
+            </group>
+            <group id="sales_display" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Admin Order Price Display</label>
+                <field id="price" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Including and Excluding</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group> -->
+        </section>
+    </system>
+</config>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+* @author      Oscprofessionals Team (support@oscprofessionals.com)
+* @copyright   Copyright (c) 2015 Oscprofessionals (http://www.oscprofessionals.com)
+* @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*
+* @category    Oscprofessionals
+* @package     Oscprofessionals_Vatexempt
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/catalog_attributes.xsd">
+    <group name="catalog_product">
+        <attribute name="vat_exempt"/>
+    </group>
+    <group name="quote_item">
+        <attribute name="vat_exempt"/>
+    </group>
+    <group name="quote">
+        <attribute name="vat_exempt"/>
+    </group>
+    <group name="unassignable">
+        <attribute name="vat_exempt" />
+    </group>
+</config>

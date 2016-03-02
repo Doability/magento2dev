@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <system>
+            <vat_exempt>
+                <vat_exempt_class>Vatexempt Class</vat_exempt_class>
+                <vat_exempt_tax_rate>Vat Exempt</vat_exempt_tax_rate>
+                <vat_exempt_tax_rule>Vat Exempt</vat_exempt_tax_rule>
+            </vat_exempt>
+        </system>
+    </default>
+</config>
