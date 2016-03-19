@@ -1,1 +1,207 @@
 @media (min-width: 768px), print {.product.attibute.description h1 {margin-bottom: 10px;line-height:0.5;}}
+
+
+.home-promo {
+	img {
+		width: 100%;
+		max-width: none;
+	}
+	ul {
+		li {
+			&:nth-child(3n&+3) {
+				margin-right: 0;
+			}
+		}
+	}
+}
+.shipping-info {
+	img {
+		width: 100%;
+		max-width: none;
+	}
+}
+.medical-condition {
+	img {
+		width: 100%;
+		max-width: none;
+	}
+}
+.magestore-bannerslider-standard {
+	width: 100% !important;
+}
+@media only screen and (max-width: 1037px) {
+	.home-promo {
+		ul {
+			li {
+				margin-right: 1.6%;
+				width: 48.8%;
+				&:nth-child(3n&+3) {
+					margin-right: 1.6%;
+				}
+				&:nth-child(2n&+2) {
+					margin-right: 0;
+				}
+			}
+		}
+	}
+}
+@media only screen and (max-width: 767px) {
+	.cms-index-index {
+		.page-header {
+			margin: 0;
+		}
+	}
+}
+@media only screen and (max-width: 360px) {
+	.home-promo {
+		ul {
+			li {
+				width: 100%;
+				margin: 0;
+			}
+		}
+	}
+}
+
+
+/*Social Media icons*/
+@color_1: #000;
+
+.social-links {
+	span.i-blogger {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -407px -107px;
+	}
+	span.i-blogger-w {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -407px -157px;
+	}
+	span.i-facebook {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -57px -107px;
+	}
+	span.i-facebook-w {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -57px -157px;
+	}
+	span.i-googleplus {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -107px -107px;
+	}
+	span.i-googleplus-w {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -107px -157px;
+	}
+	span.i-linkedin {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -357px -107px;
+	}
+	span.i-linkedin-w {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -357px -157px;
+	}
+	span.i-pinterest {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -307px -107px;
+	}
+	span.i-pinterest-w {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -307px -157px;
+	}
+	span.i-twitter {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -7px -107px;
+	}
+	span.i-twitter-w {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -7px -157px;
+	}
+	span.i-vimeo-w {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -207px -157px;
+	}
+	span.i-wordpress {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -257px -107px;
+	}
+	span.i-wordpress-w {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -257px -157px;
+	}
+	span.i-youtube {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -157px -107px;
+	}
+	span.i-youtube-w {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -157px -157px;
+	}
+	a {
+		&:hover {
+			span {
+				background-color: #FAA13D;
+			}
+		}
+	}
+	span {
+		background-position: 0 0;
+		background-repeat: no-repeat;
+		display: inline-block;
+		height: 30px;
+		padding: 3px;
+		width: 30px;
+		text-indent: -9999px;
+		background-color: #BBB;
+		margin-bottom: 3px;
+	}
+	span.i-vimeo {
+		background-image: url(../images/sprite-icons-social.png);
+		background-position: -207px -107px;
+	}
+}
+.footerfull {
+	.grid-full {
+		ul.bullet {
+			li {
+				a {
+					font-size: 12px;
+					color: @color_1;
+					font-weight: 400;
+				}
+			}
+		}
+	}
+	.footer-bottom-container {
+		.item-left {
+			float: left;
+			width: 100%;
+			margin-bottom: 15px;
+		}
+	}
+	.footer-primary-bottom {
+		.item-left {
+			float: left;
+			width: 44%;
+			margin-bottom: 15px;
+		}
+	}
+	.item-right {
+		float: right;
+	}
+}
+.footer-primary-bottom-spacing {
+	border-color: rgba(0,0,0,.05);
+	border-top: 1px solid rgba(0,0,0,.05);
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+#subscribe-form {
+	float: right;
+	margin-left: 15px;
+}
+.footer-bottom-container {
+	background-color: #ebebeb;
+	float: left;
+	width: 100%;
+	clear: both;
+}
