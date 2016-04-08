@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Store/etc/config.xsd">   
+    <default>
+        <carriers>
+            <matrixrate>
+                <condition_name>package_weight</condition_name>
+                <active>0</active>
+                <include_virtual_price>1</include_virtual_price>
+                <sallowspecific>0</sallowspecific>
+                <allow_free_shipping_promotions>1</allow_free_shipping_promotions>
+                <show_only_free>0</show_only_free>
+                <free_method_text>Free Shipping</free_method_text>
+                <cutoff_cost>50</cutoff_cost>
+                <model>Webshopapps\Matrixrate\Model\Carrier\Matrixrate</model>
+                <name>MatrixRate</name>
+                <title>Select Shipping Method</title>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>      
+                <include_free_ship_items>0</include_free_ship_items>
+            </matrixrate>
+        </carriers>
+    </default>
+</config>

@@ -29,8 +29,8 @@ class FunctionCallSpaceFixer extends AbstractFixer
     {
         $tokens = Tokens::fromCode($content);
 
-        $functionyTokens = $this->getFunctionyTokens();
-        $languageConstructionTokens = $this->getLanguageConstructionTokens();
+        $functionyTokens = $this->getFunctionyTokenKinds();
+        $languageConstructionTokens = $this->getLanguageConstructionTokenKinds();
 
         foreach ($tokens as $index => $token) {
             // looking for start brace
@@ -49,7 +49,7 @@ class FunctionCallSpaceFixer extends AbstractFixer
             $endParenthesisIndex = $tokens->findBlockEnd(Tokens::BLOCK_TYPE_PARENTHESIS_BRACE, $index);
             $nextNonWhiteSpace = $tokens->getNextMeaningfulToken($endParenthesisIndex);
             if (
-                !empty($nextNonWhiteSpace)
+                null !== $nextNonWhiteSpace
                 && $tokens[$nextNonWhiteSpace]->equals('?')
                 && $tokens[$lastTokenIndex]->isGivenKind($languageConstructionTokens)
             ) {
@@ -59,6 +59,11 @@ class FunctionCallSpaceFixer extends AbstractFixer
             // check if it is a function call
             if ($tokens[$lastTokenIndex]->isGivenKind($functionyTokens)) {
                 $this->fixFunctionCall($tokens, $index);
+            } elseif ($tokens[$lastTokenIndex]->isGivenKind(T_STRING)) { // for real function calls or definitions
+                $possibleDefinitionIndex = $tokens->getPrevMeaningfulToken($lastTokenIndex);
+                if (!$tokens[$possibleDefinitionIndex]->isGivenKind(T_FUNCTION)) {
+                    $this->fixFunctionCall($tokens, $index);
+                }
             }
         }
 
@@ -88,13 +93,11 @@ class FunctionCallSpaceFixer extends AbstractFixer
     }
 
     /**
-     * Gets the name of tokens which can work as function calls.
+     * Gets the token kinds which can work as function calls.
      *
-     * @staticvar string[] $tokens Token names.
-     *
-     * @return string[] Token names.
+     * @return int[] Token names.
      */
-    private function getFunctionyTokens()
+    private function getFunctionyTokenKinds()
     {
         static $tokens = null;
 
@@ -112,7 +115,6 @@ class FunctionCallSpaceFixer extends AbstractFixer
                 T_PRINT,
                 T_REQUIRE,
                 T_REQUIRE_ONCE,
-                T_STRING,   // for real function calls
                 T_UNSET,
             );
         }
@@ -121,11 +123,11 @@ class FunctionCallSpaceFixer extends AbstractFixer
     }
 
     /**
-     * Gets the name of tokens that are actually language construction.
+     * Gets the token kinds of actually language construction.
      *
      * @return int[]
      */
-    private function getLanguageConstructionTokens()
+    private function getLanguageConstructionTokenKinds()
     {
         static $languageConstructionTokens = array(
             T_ECHO,

@@ -36,8 +36,8 @@ class FunctionCallSpaceFixerTest extends AbstractFixerTestBase
             ),
            // test method call
            array(
-                '<?php $o->abc($a)',
-                '<?php $o->abc ($a)',
+                '<?php $o->abc($a);',
+                '<?php $o->abc ($a);',
             ),
            // test function-like constructs
            array(
@@ -100,6 +100,23 @@ class FunctionCallSpaceFixerTest extends AbstractFixerTestBase
             ),
             array(
                 '<?php include ($html)? "custom.html": "custom.php";',
+            ),
+            // don't touch function declarations
+            array(
+                '<?php
+                function TisMy ($p1)
+                {
+                    print $p1;
+                }
+                ',
+            ),
+            array(
+                'class A {
+                    function TisMy    ($p1)
+                    {
+                        print $p1;
+                    }
+                }',
             ),
         );
     }

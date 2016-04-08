@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <head><title>All Brands</title></head>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">/</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Brands</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Brands</item>
+                    <item name="label" xsi:type="string">Brands</item>
+                    <item name="link" xsi:type="string">/brand</item>
+                </argument>
+            </action>
+             <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">All Brand</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">All Brands</item>
+                    <item name="label" xsi:type="string">All Brands</item>                    
+                </argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">All Brands</argument>
+            </action>
+        </referenceBlock>
+        <attribute name="class" value="emizen_brand_index"/>
+        <referenceContainer name="content">
+            <block class="Emizentech\ShopByBrand\Block\Index" name="brand.list.content"  template="Emizentech_ShopByBrand::emizen_brand/list.phtml" cacheable="true">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

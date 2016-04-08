@@ -7,8 +7,10 @@
 -->
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <move element="product.info.stock.sku" destination="product.info.price" before="product.price.final"/>
-        <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
-        <move element="product.info.type" destination="product.info.price" before="product.price.final"/>    
+        <move element="product.info.sku" destination="product.info.stock.sku" before="product.info.type"/>
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View" name="vat_exempt" template="Oscprofessionals_Vatexempt::catalog/product/vat_exempt.phtml" after="product.info.price" />                    
+        </referenceContainer>       
+
     </body>
 </page>

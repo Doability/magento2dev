@@ -17,12 +17,12 @@ interface DriverInterface
     /**
      * Permissions to give read/write/execute access to owner and owning group, but not to all users
      */
-    const WRITEABLE_DIRECTORY_MODE = 0755;
+    const WRITEABLE_DIRECTORY_MODE = 0770;
 
     /**
      * Permissions to give read/write access to owner and owning group, but not to all users
      */
-    const WRITEABLE_FILE_MODE = 0644;
+    const WRITEABLE_FILE_MODE = 0660;
 
     /**
      *
