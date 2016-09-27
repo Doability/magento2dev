@@ -25,9 +25,7 @@ class DefinitionDecorator extends Definition
     private $changes = array();
 
     /**
-     * Constructor.
-     *
-     * @param string $parent The id of Definition instance to decorate.
+     * @param string $parent The id of Definition instance to decorate
      */
     public function __construct($parent)
     {
@@ -134,6 +132,16 @@ class DefinitionDecorator extends Definition
         $this->changes['deprecated'] = true;
 
         return parent::setDeprecated($boolean, $template);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAutowired($autowired)
+    {
+        $this->changes['autowire'] = true;
+
+        return parent::setAutowired($autowired);
     }
 
     /**

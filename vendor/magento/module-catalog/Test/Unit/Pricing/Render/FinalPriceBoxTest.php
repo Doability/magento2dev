@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -81,6 +81,28 @@ class FinalPriceBoxTest extends \PHPUnit_Framework_TestCase
             ->method('getBlock')
             ->will($this->returnValue($this->priceBox));
 
+        $cacheState = $this->getMockBuilder(\Magento\Framework\App\Cache\StateInterface::class)
+            ->getMockForAbstractClass();
+
+        $appState = $this->getMockBuilder(\Magento\Framework\App\State::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $resolver = $this->getMockBuilder(\Magento\Framework\View\Element\Template\File\Resolver::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $urlBuilder = $this->getMockBuilder(\Magento\Framework\UrlInterface::class)
+            ->getMockForAbstractClass();
+
+        $store = $this->getMockBuilder(\Magento\Store\Api\Data\StoreInterface::class)
+            ->getMockForAbstractClass();
+
+        $storeManager = $this->getMockBuilder('\Magento\Store\Model\StoreManagerInterface')
+            ->setMethods(['getStore', 'getCode'])
+            ->getMockForAbstractClass();
+        $storeManager->expects($this->any())->method('getStore')->will($this->returnValue($store));
+
         $scopeConfigMock = $this->getMockForAbstractClass('Magento\Framework\App\Config\ScopeConfigInterface');
         $context = $this->getMock('Magento\Framework\View\Element\Template\Context', [], [], '', false);
         $context->expects($this->any())
@@ -98,6 +120,21 @@ class FinalPriceBoxTest extends \PHPUnit_Framework_TestCase
         $context->expects($this->any())
             ->method('getScopeConfig')
             ->will($this->returnValue($scopeConfigMock));
+        $context->expects($this->any())
+            ->method('getCacheState')
+            ->will($this->returnValue($cacheState));
+        $context->expects($this->any())
+            ->method('getStoreManager')
+            ->will($this->returnValue($storeManager));
+        $context->expects($this->any())
+            ->method('getAppState')
+            ->will($this->returnValue($appState));
+        $context->expects($this->any())
+            ->method('getResolver')
+            ->will($this->returnValue($resolver));
+        $context->expects($this->any())
+            ->method('getUrlBuilder')
+            ->will($this->returnValue($urlBuilder));
 
         $this->rendererPool = $this->getMockBuilder('Magento\Framework\Pricing\Render\RendererPool')
             ->disableOriginalConstructor()
@@ -116,7 +153,7 @@ class FinalPriceBoxTest extends \PHPUnit_Framework_TestCase
                 'saleableItem' => $this->product,
                 'rendererPool' => $this->rendererPool,
                 'price' => $this->price,
-                'data' => ['zone' => 'test_zone']
+                'data' => ['zone' => 'test_zone', 'list_category_page' => true]
             ]
         );
     }
@@ -213,6 +250,7 @@ class FinalPriceBoxTest extends \PHPUnit_Framework_TestCase
 
         $arguments = [
             'zone' => 'test_zone',
+            'list_category_page' => true,
             'display_label' => 'As low as',
             'price_id' => $priceId,
             'include_container' => false,
@@ -331,5 +369,16 @@ class FinalPriceBoxTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue(false));
 
         $this->assertEmpty($this->object->toHtml());
+    }
+
+    public function testGetCacheKey()
+    {
+        $result = $this->object->getCacheKey();
+        $this->assertStringEndsWith('list-category-page', $result);
+    }
+
+    public function testGetCacheKeyInfo()
+    {
+        $this->assertArrayHasKey('display_minimal_price', $this->object->getCacheKeyInfo());
     }
 }

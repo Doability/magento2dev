@@ -177,7 +177,6 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
     {
         $sc = new ProjectServiceContainer();
         $sc->set('foo', $foo = new \stdClass());
-        $sc->set('bar', $foo = new \stdClass());
         $sc->set('baz', $foo = new \stdClass());
 
         try {
@@ -310,7 +309,9 @@ class ContainerTest extends \PHPUnit_Framework_TestCase
 
 class ProjectServiceContainer extends Container
 {
-    public $__bar, $__foo_bar, $__foo_baz;
+    public $__bar;
+    public $__foo_bar;
+    public $__foo_baz;
 
     public function __construct()
     {

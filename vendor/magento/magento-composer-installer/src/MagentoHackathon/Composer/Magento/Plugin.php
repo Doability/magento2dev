@@ -20,6 +20,7 @@ use Composer\Plugin\PluginInterface;
 use Composer\Plugin\PluginEvents;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\Script\ScriptEvents;
+use Composer\Installer\PackageEvents;
 use Composer\Util\Filesystem;
 use Symfony\Component\Process\Process;
 
@@ -58,6 +59,16 @@ class Plugin implements PluginInterface, EventSubscriberInterface
      * @var Filesystem
      */
     protected $filesystem;
+
+    /**
+     * @var string
+     */
+    private $regenerate = '/.regenerate';
+
+    /**
+     * @var string
+     */
+    private $varFolder = '/var';
 
     protected function initDeployManager(Composer $composer, IOInterface $io)
     {
@@ -98,13 +109,13 @@ class Plugin implements PluginInterface, EventSubscriberInterface
             ScriptEvents::POST_UPDATE_CMD => array(
                 array('onNewCodeEvent', 0),
             ),
-            ScriptEvents::POST_PACKAGE_UNINSTALL => array(
+            PackageEvents::POST_PACKAGE_UNINSTALL => array(
                 array('onPackageUnistall', 0),
             )
         );
     }
 
-    public function onPackageUnistall(\Composer\Script\PackageEvent $event)
+    public function onPackageUnistall(\Composer\Installer\PackageEvent $event)
     {
         $ds = DIRECTORY_SEPARATOR;
         $package = $event->getOperation()->getPackage();
@@ -118,6 +129,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         $deployStrategy = $this->installer->getDeployStrategy($package);
         $deployStrategy->rmdirRecursive($packageInstallationPath . $ds . $libPath);
         $deployStrategy->rmdirRecursive($packageInstallationPath . $ds . $magentoPackagePath);
+        $this->requestRegeneration();
     }
 
     /**
@@ -133,9 +145,9 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     /**
      * event listener is named this way, as it listens for events leading to changed code files
      *
-     * @param \Composer\Script\CommandEvent $event
+     * @param \Composer\Script\Event $event
      */
-    public function onNewCodeEvent(\Composer\Script\CommandEvent $event)
+    public function onNewCodeEvent(\Composer\Script\Event $event)
     {
         if ($this->io->isDebug()) {
             $this->io->write('start magento deploy via deployManager');
@@ -144,6 +156,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         $this->deployManager->doDeploy();
         $this->deployLibraries();
         $this->saveVendorDirPath($event->getComposer());
+        $this->requestRegeneration();
     }
 
 
@@ -265,5 +278,18 @@ return '$vendorDirPath';
 
 AUTOLOAD;
         file_put_contents($vendorPathFile, $content);
+    }
+
+    /**
+     * Force regeneration of var/di, var/cache, var/generation on next object manager invocation
+     *
+     * @return void
+     */
+    private function requestRegeneration()
+    {
+        if (is_writable($this->installer->getTargetDir() . $this->varFolder)) {
+            $filename = $this->installer->getTargetDir() . $this->varFolder . $this->regenerate;
+            touch($filename);
+        }
     }
 }

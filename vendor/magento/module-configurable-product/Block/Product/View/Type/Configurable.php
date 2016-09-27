@@ -2,7 +2,7 @@
 /**
  * Catalog super product configurable part block
  *
- * Copyright © 2015 Magento. All rights reserved.
+ * Copyright © 2016 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
 namespace Magento\ConfigurableProduct\Block\Product\View\Type;
@@ -124,7 +124,7 @@ class Configurable extends \Magento\Catalog\Block\Product\View\AbstractView
     /**
      * Get Allowed Products
      *
-     * @return array
+     * @return \Magento\Catalog\Model\Product[]
      */
     public function getAllowProducts()
     {
