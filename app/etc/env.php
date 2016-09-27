@@ -14,7 +14,8 @@ return array (
   ),
   'session' => 
   array (
-    'save' => 'db',
+    'save' => 'files',
+    'path' => 'var/tmp',
   ),
   'db' => 
   array (
@@ -42,7 +43,7 @@ return array (
     ),
   ),
   'x-frame-options' => 'SAMEORIGIN',
-  'MAGE_MODE' => 'default',
+  'MAGE_MODE' => 'production',
   'cache_types' => 
   array (
     'config' => 1,
@@ -57,5 +58,32 @@ return array (
     'full_page' => 1,
     'translate' => 1,
     'config_webservice' => 1,
+    'compiled_config' => 1,
+    'customer_notification' => 1,
+  ),
+  'cache' => 
+  array (
+    'frontend' => 
+    array (
+      'default' => 
+      array (
+        'backend' => 'Cm_Cache_Backend_Redis',
+        'backend_options' => 
+        array (
+          'server' => '127.0.0.1',
+          'port' => '6379',
+          'persistent' => '',
+          'database' => '0',
+          'force_standalone' => '0',
+          'connect_retries' => '1',
+          'read_timeout' => '10',
+          'automatic_cleaning_factor' => '0',
+          'compress_data' => '1',
+          'compress_tags' => '1',
+          'compress_threshold' => '20480',
+          'compression_lib' => 'gzip',
+        ),
+      ),
+    ),
   ),
 );

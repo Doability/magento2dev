@@ -49,11 +49,7 @@ define(
                     totals.isLoading(false);
                     errorProcessor.process(response, messageContainer);
                 }
-            ).always(
-                function () {
-                    isLoading(false);
-                }
-            );
+            )
         };
     }
 );

@@ -21,6 +21,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $_vatExemptedProductTaxClassId = '';
 	protected $_backendConfig;
 	const XML_PATH_MODULE_ENABLED = 'oscp/vatexempt/is_enabled';
+	const XML_PATH_CATALOG_DISPLAY_INCL_EXCL_TAX_ENABLED = 'oscp/catalog_display/price';
+	const XML_PATH_SALES_DISPLAY_INCL_EXCL_TAX_ENABLED = 'oscp/sales_display/price';
 	const XML_VAT_EXEMPT_CLASS = 'system/vat_exempt/vat_exempt_class';
 	const XML_VAT_EXEMPT_TAX_RATE = 'system/vat_exempt/vat_exempt_tax_rate';
 	const XML_VAT_EXEMPT_TAX_RULE = 'system/vat_exempt/vat_exempt_tax_rule';
@@ -54,6 +56,22 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return (bool)$this->scopeConfig->getValue(
             self::XML_PATH_MODULE_ENABLED,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    public function isCatalogDisplayIncExcTaxEnabled()
+    {
+        return (bool)$this->scopeConfig->getValue(
+            self::XML_PATH_CATALOG_DISPLAY_INCL_EXCL_TAX_ENABLED,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    public function isSalesDisplayIncExcTaxEnabled()
+    {
+        return (bool)$this->scopeConfig->getValue(
+            self::XML_PATH_SALES_DISPLAY_INCL_EXCL_TAX_ENABLED,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }
@@ -125,4 +143,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return;
         }
     }
+
+    // Code changed here by developer-58 to get the checkout sesssion quote;
+
+    public function getCheckoutSessionMethod(){
+        return $this->getCheckoutSession();
+    }
+
 }

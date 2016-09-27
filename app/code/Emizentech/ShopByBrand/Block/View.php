@@ -2,6 +2,15 @@
 
 namespace Emizentech\ShopByBrand\Block;
 
+/**
+ * View
+ * 
+ * @package Doablity
+ * @author gencyolcu
+ * @copyright 2016
+ * @version $Id$
+ * @access public
+ */
 class View extends \Magento\Framework\View\Element\Template {
 
     /**
@@ -24,6 +33,11 @@ class View extends \Magento\Framework\View\Element\Template {
     protected $_productCollectionFactory;
 
     /**
+     * @var \Magento\Framework\View\Page\Config
+     */
+    protected $pageConfig;
+
+    /**
      * Image helper
      *
      * @var Magento\Catalog\Helper\Image
@@ -37,7 +51,13 @@ class View extends \Magento\Framework\View\Element\Template {
     protected $_brandFactory;
 
     public function __construct(
-    \Magento\Catalog\Block\Product\Context $context, \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory, \Magento\Catalog\Model\Product\Visibility $catalogProductVisibility, \Magento\Framework\App\Http\Context $httpContext, \Emizentech\ShopByBrand\Model\BrandFactory $brandFactory, array $data = []
+    \Magento\Catalog\Block\Product\Context $context, 
+	\Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory, 
+	\Magento\Catalog\Model\Product\Visibility $catalogProductVisibility, 
+	\Magento\Framework\App\Http\Context $httpContext, 
+	\Emizentech\ShopByBrand\Model\BrandFactory $brandFactory, 
+    \Magento\Framework\View\Page\Config $pageConfig,
+	array $data = []
     ) {
         $this->_productCollectionFactory = $productCollectionFactory;
         $this->_catalogProductVisibility = $catalogProductVisibility;
@@ -45,6 +65,7 @@ class View extends \Magento\Framework\View\Element\Template {
         $this->_imageHelper = $context->getImageHelper();
         $this->_brandFactory = $brandFactory;
         $this->_cartHelper = $context->getCartHelper();
+        $this->pageConfig = $pageConfig;		
         parent::__construct(
                 $context, $data
         );
@@ -55,6 +76,16 @@ class View extends \Magento\Framework\View\Element\Template {
     }
 
     public function _prepareLayout() {
+		$brand = $this->getBrand(); 
+		$pageMainTitle = $this->getLayout()->getBlock('page.main.title');
+		if ($pageMainTitle) {
+			$pageMainTitle->setPageTitle($brand->getName());
+		}
+        $this->pageConfig->getTitle()->set($brand->getTitle());
+        $this->pageConfig->setKeywords($brand->getTitle());
+        $this->pageConfig->setDescription($brand->getTitle());
+
+		
         return parent::_prepareLayout();
     }
 
@@ -126,5 +157,29 @@ class View extends \Magento\Framework\View\Element\Template {
         }
         return $price;
     }
+
+
+//     protected function _addBreadcrumbs(\Emizentech\ShopByBrand\Model\Items $page)
+//    {
+//        if (($breadcrumbsBlock = $this->getLayout()->getBlock('breadcrumbs'))) {
+//
+//            $breadcrumbsBlock->addCrumb(
+//                'home',
+//                [
+//                    'label' => __('Home'),
+//                    'title' => __('Go to Home Page'),
+//                    'link' => $this->_storeManager->getStore()->getBaseUrl()
+//                ],
+//                                'brands',
+//                [
+//                    'label' => __('Brands'),
+//                    'title' => __('Go to Brands'),
+//                    'link' => $this->getUrl('brands')
+//                ]
+//            );
+//            $breadcrumbsBlock->addCrumb('brand_page', ['label' => $page->getName(), 'title' => $page->getTitle()]);
+//        }
+//    }
+
 
 }

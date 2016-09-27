@@ -1,0 +1,27 @@
+<?php
+$params = $this->getRequest()->getParams();
+$vatDeclare = $block->getVatdeclareStatus($params);
+$currentPageUrl = $block->getCurrentPageUrl();
+?>
+
+<fieldset  class="admin__fieldset order-choose-address">
+    <div class="vat_declare">
+        <div class="">
+            <?php $location = "window.location.href ='".$currentPageUrl."'"."+'?vatdeclare='+"."this.checked"; ?>
+
+            <input onchange="javascript: <?php echo $location; ?>"
+                   type="checkbox" id="vat_declare" name="order[vat_declare]"
+                <?php if($vatDeclare==1)
+                {
+                    echo "checked='checked'";
+                }
+                ?> />
+
+            <label for="vat_declare" class="admin__field-label">
+                <?php echo __("<b> &nbsp; I declare that I am eligible for zero Vat</b>"); ?>
+            </label>
+
+        </div>
+    </div>
+
+</fieldset>

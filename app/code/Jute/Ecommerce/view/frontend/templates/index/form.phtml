@@ -1,0 +1,53 @@
+<?php
+/**
+ * Copyright � 2016 jutecommerce. All rights reserved.
+ */
+?>
+<?php
+/**
+ * {{controller}} {{action}} template
+ *
+ * @var $block \Jute\Ecommerce\Block\Index\Index
+ */
+?>
+
+<form class="form ecommerce"
+      action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>"
+      id="ecommerce-form"
+      method="post"
+      data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">        
+		<dl>
+			<dt>&nbsp;&nbsp; Full Name:</dt>
+			<dd><input type="text" name="contact_fullname" id="contact_fullname" class="Textbox Field200" value=""></dd>
+
+			<dt><span class="Required">*</span>&nbsp; Email Address:</dt>
+			<dd><input type="text" name="contact_email" id="contact_email" class="Textbox Field200" value="" data-validate="{required:true, 'validate-email':true}"></dd>
+
+			<dt>&nbsp;&nbsp; Company Name:</dt>
+			<dd><input type="text" name="contact_companyname" id="contact_companyname" class="Textbox Field200" value=""></dd>
+
+			<dt>&nbsp;&nbsp; Phone Number:</dt>
+			<dd><input type="text" name="contact_phone" id="contact_phone" class="Textbox Field200" value=""></dd>
+
+			<dt>&nbsp;&nbsp; Order Number:</dt>
+			<dd><input type="text" name="contact_orderno" id="contact_orderno" class="Textbox Field200" value=""></dd>
+
+			<dt>&nbsp;&nbsp; RMA Number:</dt>
+			<dd><input type="text" name="contact_rma" id="contact_rma" class="Textbox Field200" value=""></dd>
+
+			<dt><span class="Required">*</span>&nbsp; Details:</dt>
+			<dd><textarea  data-validate="{required:true}" name="contact_question" id="contact_question" class="Field300" rows="5" cols="50"></textarea>
+			</dd>
+			</dd>
+		</dl>
+		<p class="Submit">
+			<input type="submit" value="Send Form" class="ContactButton">
+		</p>
+
+    </fieldset>
+
+    </div>
+</form>
+

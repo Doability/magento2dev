@@ -1,0 +1,4 @@
+.price-including-tax::before,.weee[data-label]::before {
+    content: attr(data-label) ": ";
+    font-size: 1.1rem;
+}

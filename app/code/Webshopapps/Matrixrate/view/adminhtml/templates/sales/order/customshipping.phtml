@@ -1,0 +1,25 @@
+<?php
+$params = $this->getRequest()->getParams();
+$currentPageUrl = $block->getCurrentPageUrl();
+?>
+
+<fieldset   class="admin__fieldset order-choose-address">
+    <div class="vat_declare">
+        <input type="text" class="admin__control-text" placeholder="<?php echo __("Custom Rates") ?>" id="custom_shipping_rate"  />
+        <input type="button" value="Save" id="SaveCustomRate" class="action-default scalable" /> 
+    </div>
+</fieldset>
+
+<script type="text/javascript">
+            require(["jquery"], function ($) {
+                jQuery('#SaveCustomRate').click(function () {
+                    new Ajax.Request('<?php echo $this->getUrl('matrixrate/customrate'); ?>', {
+                        parameters: {'form_key': window.FORM_KEY, 'price': jQuery('#custom_shipping_rate').val(), 'title': 'custom rate'},
+                        loaderArea: 'shipping_method',
+                        onSuccess: function (response) {
+                             order.loadShippingRates();
+                        }
+                    });
+                })
+            });
+</script>

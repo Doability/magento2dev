@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/logo.jpg</argument>
+                <argument name="logo_img_width" xsi:type="number">230</argument> 
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="footer">
+            <referenceBlock name="footer_links" remove="true"/>            
+            <block class="Magento\Cms\Block\Block" after="-"  name="footer-links">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">footer-links</argument>
+                </arguments>
+            </block>   
+            <block class="Magento\Cms\Block\Block" after="store_switcher"  name="footer-social-icons">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">footer-social-icons</argument>
+                </arguments>
+            </block>   
+	
+        </referenceContainer>
+     
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Cms\Block\Block" after="-"  name="zoopim-chat">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">zoopim-chat</argument>
+                </arguments>
+            </block> 
+
+        </referenceContainer>  
+    </body>
+</page>

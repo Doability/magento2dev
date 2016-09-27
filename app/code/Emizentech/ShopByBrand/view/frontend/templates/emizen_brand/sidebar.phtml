@@ -13,7 +13,7 @@ $brands = $this->getBrands();
 			<div class="brand-char-sidebar">
 <!-- 				<strong> # <?php echo $char;?></strong> -->
 				<?php foreach($brands[$char] as $_brand):?>
-					<li><a href="<?php echo $this->getUrl('brand/view/',array('id'=>$_brand->getId()));?>"><?php echo $_brand->getName();?></a></li>
+					<li><a href="<?php echo $this->getUrl('brands/'.$_brand->getUrlKey());?>"><?php echo $_brand->getName();?></a></li>
 				<?php endforeach;?>
 			</div>
 		<?php endif;?>

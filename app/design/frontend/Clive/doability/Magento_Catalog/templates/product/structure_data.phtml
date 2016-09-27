@@ -1,0 +1,36 @@
+<?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+<?php $_product = $block->getProduct(); ?>
+<div style="display:none;">
+<?php ?><div itemprop="gtin13"><?php echo $_product->getUpc(); ?></div>
+<?php ?>
+<div itemprop="brand"><?php echo $_product->getAttributeText('manufacturer'); ?></div>
+<div itemprop="category">
+<?php
+$categoryIds = $_product->getCategoryIds();
+if(count($categoryIds) ){
+    $firstCategoryId = $categoryIds[0];
+    $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+	$object_manager = $_objectManager->create('Magento\Catalog\Model\Category')->load($firstCategoryId);
+	echo $object_manager->getName();
+}
+?>
+</div>
+<div itemprop="weight"><?php echo $_product->getWeight(); ?></div>
+<?php /*?><div itemprop="description"><?php echo strip_tags($_helper->productAttribute($_product, nl2br($_product->getDescription()), 'description')); ?></div><?php*/ ?>
+<?php if($_product->getImage()): ?>
+<div itemprop="image"><?php echo $block->getUrl('pub/media/catalog').'product'.$_product->getImage(); ?></div>
+<?php endif; ?>
+<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+	<span style="display: none;" itemprop="price"><?php echo number_format($_product->getFinalPrice(),2); ?></span>
+    <meta itemprop="priceCurrency" content="GBP" />
+	<div itemprop="itemCondition">New</div>
+	<div itemprop="url"><?php echo $_product->getProductUrl(); ?></div>    
+<?php if($_product->isAvailable()){ ?>
+	<div itemprop="availability">In stock</div>
+<?php }
+else{ ?>
+	<div itemprop="availability">Out of stock</div>
+<?php }
+?>
+  </div>
+</div>

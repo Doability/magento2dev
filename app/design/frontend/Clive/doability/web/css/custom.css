@@ -1,0 +1,19 @@
+.price-including-tax + .price-excluding-tax::before, .weee[data-label]::before {
+    font-size: 1.4rem;
+}
+.price-container .price-including-tax + .price-excluding-tax, .price-container .price-including-tax + .price-excluding-tax .price, .price-container .weee + .price-excluding-tax .price {
+    font-size: 1.4rem;
+}
+
+.catalog-product-view .price-including-tax + .price-excluding-tax::before, .weee[data-label]::before {
+    font-size: 1.1rem;
+}
+.catalog-product-view .price-container .price-including-tax + .price-excluding-tax, .catalog-product-view .price-container .price-including-tax + .price-excluding-tax .price, .catalog-product-view .price-container .weee + .price-excluding-tax .price {
+    font-size: 36px !important;
+	line-height: 36px !important;
+}
+
+.product-options-bottom .price-box .price-container .price, .product-info-price .price-box .price-container .price {
+    font-size: 1.1rem !important;
+    line-height: normal !important;
+}

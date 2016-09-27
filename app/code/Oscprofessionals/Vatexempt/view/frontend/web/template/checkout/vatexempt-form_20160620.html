@@ -1,0 +1,73 @@
+<!--
+* @author      Oscprofessionals Team (support@oscprofessionals.com)
+* @copyright   Copyright (c) 2015 Oscprofessionals (http://www.oscprofessionals.com)
+* @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*
+* @category    Oscprofessionals
+* @package     Oscprofessionals_Vatexempt
+-->
+<div class="vatexempt-option-content" data-role="content" data-bind="css: isApplied() ? 'selected-item' : 'not-selected-item'">
+   <form class="form vatexempt-form" id="vatexempt-form" novalidate="novalidate">
+      <fieldset id="co-vatexempt" data-bind="blockLoader: isLoading">
+         <div class="form-list">
+            <div class="wide">
+               <p>Zero vat is available on products you have brought .:<br><br>
+                  This is for disable people and charities that qualify and purches certain Product VAT free to cliam for zero VAT.<br>
+                  Please fill the below details tick the box as confirmation</p>
+               <p>If you do not wish to claim VAT then select continue.</p>
+            </div>
+            <br />
+            <div class="wide">
+               <div class="field">
+                  <p>Please enter in the box below</p>
+                  <label class="label" for="vatpername">
+                     <span data-bind="i18n: 'Name of person the goods are for'">Name of person the goods are for</span>
+                  </label>
+                  <div class="control">
+                     <input class="input-text"
+                            type="text"
+                            name='vatpername'
+                            id="vatpername"
+                            title="Name of Vat Exempt Person"
+                            data-validate="{'required-entry':true}"
+                            data-bind="value:vatpernameCode, attr:{placeholder: $t('Name of Vat Exempt Person')} " />
+                  </div>
+               </div>
+            </div>
+            <br />
+            <div class="wide">
+               <div class="field">
+                  <label class="label" for="vatcomment">
+                     <span data-bind="i18n: 'Their Condition'">Their Condition</span>
+                  </label>
+                  <div class="control">
+                     <textarea class="input-text"
+                               id="vatcomment"
+                               name='vatcomment'
+                               rows="3"
+                               title="Vat Exempt Customer Comment"
+                               data-validate="{'required-entry':true}"
+                               data-bind="value:vatcommentCode, attr:{placeholder: $t('Comment')} ">
+                     </textarea>
+                  </div>
+               </div>
+            </div>
+            <br />
+            <div class="actions-toolbar">
+               <div class="primary">
+                  <!-- ko ifnot: isApplied() -->
+                  <button class="action action-apply" type="submit" data-bind="'value': $t('Apply Vat Exempt'), click: apply">
+                     <span><!-- ko i18n: 'Apply Vat Exempt'--><!-- /ko --></span>
+                  </button>
+                  <!-- /ko -->
+                  <!-- ko if: isApplied() -->
+                  <button class="action action-cancel" type="submit" data-bind="'value': $t('Cancel Vat Exempt'), click: cancel">
+                     <span><!-- ko i18n: 'Cancel Vat Exempt'--><!-- /ko --></span>
+                  </button>
+                  <!-- /ko -->
+               </div>
+            </div>
+         </div>
+      </fieldset>
+   </form>
+</div>

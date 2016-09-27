@@ -18,13 +18,18 @@ class VatExemptObserver implements ObserverInterface
 {
     protected $_helper;
     protected $_taxCalculationModel;
+    protected $_session;
+    protected $_items;
+
 
     public function __construct(
         \Oscprofessionals\Vatexempt\Helper\Data $helper,
         \Magento\Tax\Model\Calculation $taxCalculationModel,
         \Magento\Tax\Helper\Data $taxHelper,
-        \Magento\Catalog\Helper\Data $catalogHelper
+        \Magento\Catalog\Helper\Data $catalogHelper,
+        \Magento\Backend\Model\Session\Quote $sessionQuote
     ) {
+        $this->_session = $sessionQuote;
         $this->_helper = $helper;
         $this->_taxCalculationModel = $taxCalculationModel;
         $this->taxHelper = $taxHelper;
@@ -34,7 +39,10 @@ class VatExemptObserver implements ObserverInterface
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
         $quote = $observer->getQuote();
-        $this->setCartProductTaxAmount($quote);
+        $this->_items = $quote->getAllItems();
+    //    if (count($this->_items)>0){
+            $this->setCartProductTaxAmount($quote);
+    //    }
     }
 
     public function setCartProductTaxAmount($quote)
@@ -45,10 +53,11 @@ class VatExemptObserver implements ObserverInterface
         $request = $taxCalculationModel->getRateRequest($quote->getShippingAddress(), $quote->getBillingAddress(), null, $storeId);
         $quoteVatExemptDeclare = $quote->getVatdeclare();
 
+
         switch($quoteVatExemptDeclare)
         {
             case 1:
-                foreach ($quote->getAllItems() as $item) {
+                foreach ($this->_items as $item) {
                     if ($item->getVatExempt() == 1) {
 
                         //Catalog Prices Tax Calculation base on "Including Tax with Custom Option"

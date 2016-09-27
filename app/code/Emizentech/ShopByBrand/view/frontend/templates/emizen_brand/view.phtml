@@ -7,9 +7,11 @@ $mode = 'grid';
 $image = 'brand_products_content_widget_grid';
 $type = 'widget-new-grid';
 ?>
-<h1><?php echo $brand->getName(); ?></h1>
+<!--<h1><?php //echo $brand->getName(); ?></h1>-->
 
-
+<?php if (!$productCollection->count()): ?>
+    <div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?>
 <div class="block widget block-brand-products <?php
 /* @escapeNotVerified */
 echo $mode;
@@ -117,3 +119,4 @@ echo $mode;
         </div>
     </div>
 </div>
+<?php endif; ?>

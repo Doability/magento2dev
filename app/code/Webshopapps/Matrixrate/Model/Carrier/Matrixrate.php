@@ -12,14 +12,17 @@ class Matrixrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier impleme
     protected $_conditionNames = array();
 
     public function __construct(
-    \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-            \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory,
+    \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig, 
+            \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory, 
             \Psr\Log\LoggerInterface $logger,
-            \Magento\Shipping\Model\Rate\ResultFactory $rateResultFactory,
+            \Magento\Shipping\Model\Rate\ResultFactory $rateResultFactory, 
             \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory $resultMethodFactory, 
-            \Webshopapps\Matrixrate\Model\ResourceModel\Carrier\MatrixrateFactory $matrixrateFactory, array $data = []
+            \Webshopapps\Matrixrate\Model\ResourceModel\Carrier\MatrixrateFactory $matrixrateFactory, 
+              \Magento\Framework\App\State $areaState,
+            array $data = []
     ) {
         $this->_rateResultFactory = $rateResultFactory;
+        $this->areaState = $areaState;
         $this->_resultMethodFactory = $resultMethodFactory;
         $this->_matrixrateFactory = $matrixrateFactory;
         parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
@@ -76,9 +79,13 @@ class Matrixrate extends \Magento\Shipping\Model\Carrier\AbstractCarrier impleme
                 }
             }
         }
-
+        
         if (!$request->getMRConditionName()) {
-            $request->setMRConditionName($this->getConfigData('condition_name') ? $this->getConfigData('condition_name') : $this->_default_condition_name);
+
+            if ($this->areaState->getAreaCode() == 'adminhtml') {
+                $request->setMRConditionName(['notempty','admin',$this->getConfigData('condition_name') ? $this->getConfigData('condition_name') : $this->_default_condition_name]);
+            } else
+                $request->setMRConditionName($this->getConfigData('condition_name') ? $this->getConfigData('condition_name') : $this->_default_condition_name);
         }
 
         // Package weight and qty free shipping

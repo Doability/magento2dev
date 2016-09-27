@@ -19,40 +19,9 @@ use Closure;
 
 class InsertVatExemptInOrderItem
 {
-    /**
-     * @var Copy
-     */
-    protected $objectCopyService;
+    public function beforeToHtml(\Magento\Sales\Block\Adminhtml\Order\Create\Data $originalBlock){
 
-    /**
-     * @var OrderItemFactory
-     */
-    protected $orderItemFactory;
+        $originalBlock->setTemplate('Oscprofessionals_Vatexempt::InsertVatExemptInOrderItem.phtml');
 
-    /**
-     * @var \Magento\Framework\Api\DataObjectHelper
-     */
-    protected $dataObjectHelper;
-
-    public function __construct(
-        OrderItemFactory $orderItemFactory,
-        Copy $objectCopyService,
-        \Magento\Framework\Api\DataObjectHelper $dataObjectHelper
-    ) {
-        $this->orderItemFactory = $orderItemFactory;
-        $this->objectCopyService = $objectCopyService;
-        $this->dataObjectHelper = $dataObjectHelper;
-    }
-
-    public function aroundConvert(
-        \Magento\Quote\Model\Quote\Item\ToOrderItem $subject,
-        Closure $proceed,
-        \Magento\Quote\Model\Quote\Item\AbstractItem $item
-    ) {
-        $orderItem = $this->orderItemFactory->create();
-        $setVatexemptInOrderItem = $proceed( $this->objectCopyService->copyFieldsetToTarget('quote_convert_item', 'to_order_item', $item, $orderItem));
-        $setVatexemptInOrderItem=$orderItem->setVatExemept($item->getVatExemept());
-
-        return $setVatexemptInOrderItem;
     }
 }

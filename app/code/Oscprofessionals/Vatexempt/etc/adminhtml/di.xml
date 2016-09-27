@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+* @author      Oscprofessionals Team (support@oscprofessionals.com)
+* @copyright   Copyright (c) 2015 Oscprofessionals (http://www.oscprofessionals.com)
+* @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*
+* @category    Oscprofessionals
+* @package     Oscprofessionals_Vatexempt
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+        <type name="Magento\Sales\Block\Adminhtml\Order\Create\Data">
+             <plugin name="insert-vatdeclare-in-order-page" type="Oscprofessionals\Vatexempt\Block\Adminhtml\Order\Create\NewData" sortOrder="1" />
+        </type>
+</config>

@@ -20,6 +20,7 @@
 <nav class="navigation" role="navigation"> 
     <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
         <?php /* @escapeNotVerified */ echo $_menu; ?>
+        <li class="level0" ><a href="<?php echo $this->getUrl('trade-or-professional-enquiries');?>" class="level-top ui-corner-all"><?php echo __('Trade');?></a></li>        
         <li class="level0 last" ><a href="<?php echo $this->getUrl('blog');?>" class="level-top ui-corner-all"><?php echo __('Blog');?></a></li>
     </ul>
 </nav>

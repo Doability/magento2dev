@@ -247,7 +247,6 @@ class Matrixrate extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb {
                     break;
             }
 
-
             if (is_array($request->getMRConditionName())) {
                 $i = 0;
                 foreach ($request->getMRConditionName() as $conditionName) {
@@ -257,7 +256,7 @@ class Matrixrate extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb {
                         $select->orWhere('condition_name=?', $conditionName);
                     }
                     $select->where('condition_from_value<=?', $request->getData($conditionName));
-
+                 
 
                     $i++;
                 }
@@ -265,7 +264,7 @@ class Matrixrate extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb {
                 $select->where('condition_name=?', $request->getMRConditionName());
                 $select->where('condition_from_value<=?', $request->getData($request->getMRConditionName()));
                 $select->where('condition_to_value>=?', $request->getData($request->getMRConditionName()));
-            }
+            }   
 
 
             $newdata = array();
@@ -473,6 +472,11 @@ class Matrixrate extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb {
                 }
             }
         }
+    }
+
+    public function adminCustomRate($data2) {
+        $this->getConnection()->delete($this->getMainTable(), $this->getConnection()->quoteInto('condition_name = ?', 'admin'));
+        $this->_saveImportData($data2);
     }
 
     protected function _saveImportData(array $data) {

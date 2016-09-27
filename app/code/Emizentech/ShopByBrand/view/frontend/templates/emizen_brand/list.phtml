@@ -41,7 +41,7 @@ foreach (range('A', 'Z') as $char) :
             <ul class="brandlist">
                 <?php foreach ($brands[$char] as $_brand): ?>
                     <li>
-                        <a href="<?php echo $this->getUrl('brand/view/', array('id' => $_brand->getId())); ?>">
+                        <a href="<?php echo $this->getUrl('brands/'.$_brand->getUrlKey()); ?>">
                             <?php
                             if ($_brand->getLogo()):
                                 ?>

@@ -100,6 +100,12 @@ class Main extends Generic implements TabInterface
             'text',
             ['name' => 'name', 'label' => __('Brand Name'), 'title' => __('Brand Name'), 'required' => true]
         );
+        $fieldset->addField(
+            'title',
+            'text',
+            ['name' => 'title', 'label' => __('Brand Title'), 'title' => __('Brand Title'), 'required' => true]
+        );
+
         
         $fieldset->addField(
             'sort_order',
